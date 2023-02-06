@@ -1,0 +1,17 @@
+if [ -z $1 ]; then
+  echo "Error: missing the time argument."
+  echo "Usage: lls <time-in-seconds>"
+  exit 22
+
+elif ! [ "$(echo "$1" | grep "^[0-9]\+$")" ] 2> /dev/null; then
+  echo "Error: the time argument must be a positive integer."
+  echo "Usage: lls <time-in-seconds>"
+  exit 22
+fi
+
+while true; do 
+  clear; 
+  ls -altrh --color; 
+  sleep $1; 
+done
+
