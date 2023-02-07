@@ -1,17 +1,41 @@
-if [ -z $1 ]; then
-  echo "Error: missing the time argument."
-  echo "Usage: lls <time-in-seconds>"
-  exit 22
+#!/bin/bash
 
-elif ! [ "$(echo "$1" | grep "^[0-9]\+$")" ] 2> /dev/null; then
-  echo "Error: the time argument must be a positive integer."
-  echo "Usage: lls <time-in-seconds>"
-  exit 22
+# Define default values
+time=3
+path='.'
+
+if [ $# -gt 4 ]; then
+    echo -e "\033[31mError: too many arguments provided\033[0m"
+    echo "Usage: lls [-t <time-in-seconds>] [-p <path>]"
+    exit 22
 fi
 
-while true; do 
-  clear; 
-  ls -altrh --color; 
-  sleep $1; 
-done
-
+if [ $# -eq 0 ]; then
+    # Run with default values if no arguments provided
+    while true; do
+        clear;
+        echo -e "\033[32mLive path:\033[0m \"$(realpath $path)\"\n"
+        ls -altrh --color $path;
+        sleep $time;
+    done
+else
+    if [ -z $2 ] || [[ ! "$2" =~ ^[0-9]+$ ]] 2> /dev/null; then
+        echo -e "\033[31mError: the time argument is invalid\033[0m"
+        echo "Usage: lls [-t <time-in-seconds>] [-p <path>]"
+        exit 22
+    fi
+    
+    while getopts "t:p:" option; do
+        case "${option}" in
+            t) time=${OPTARG};;
+            p) path=${OPTARG};;
+        esac
+    done
+    
+    while true; do
+        clear;
+        echo -e "\033[32mLive path:\033[0m \"$(realpath $path)\"\n"
+        ls -altrh --color $path;
+        sleep $time;
+    done
+fi
