@@ -6,8 +6,7 @@
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 ![macOS](https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=macos&logoColor=F0F0F0)
 
-![Preview_gif](https://github.com/alinoorzaadeh/lls/assets/images/preview.gif)
-
+![Preview_gif](https://github.com/alinoorzaadeh/lls/blob/master/assets/images/preview.gif)
 ## 📖 Introduction
 Do you want to keep track of changes in your directories in real-time? Do you want to do it in a simple way? Look no further! lls is here to simplify your life. This script allows you to view the contents of your directories in real-time, with just a single command.
 
