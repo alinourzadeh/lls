@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Author: alinoorzaadeh
+
 # Define default values
 time=3
 path='.'
